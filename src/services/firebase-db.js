@@ -10,8 +10,8 @@ import {
   query,
   setDoc,
 } from "firebase/firestore";
-import { db } from "../utils/firebase";
-import { uploadToStorage } from "./firebaseStorage";
+import { db } from "../config/firebase";
+import { uploadToStorage } from "./firebase-storage";
 
 // User Collection
 export const onCreateUserInDb = async (username, email, isJudge, uid) => {

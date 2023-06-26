@@ -47,8 +47,8 @@ const App = () => {
 
   return (
     <SafeAreaProvider>
-      <CompetitionProvider>
-        <UserProvider>
+      <UserProvider>
+        <CompetitionProvider>
           <NavigationContainer>
             <Stack.Navigator
               initialRouteName="Login"
@@ -57,7 +57,10 @@ const App = () => {
               <Stack.Screen name="Login" component={LoginScreen} />
               <Stack.Screen name="Register" component={RegisterScreen} />
               <Stack.Screen name="Home" component={HomeScreen} />
-              <Stack.Screen name="CDetail" component={CompeititonDetailScreen} />
+              <Stack.Screen
+                name="CDetail"
+                component={CompeititonDetailScreen}
+              />
               <Stack.Screen name="AllDogs" component={DogsScreen} />
               <Stack.Screen name="AddDog" component={AddDogScreen} />
               <Stack.Screen name="Leaderboard" component={LeaderboardScreen} />
@@ -66,8 +69,8 @@ const App = () => {
               <Stack.Screen name="Results" component={ResultScreen} />
             </Stack.Navigator>
           </NavigationContainer>
-        </UserProvider>
-      </CompetitionProvider>
+        </CompetitionProvider>
+      </UserProvider>
     </SafeAreaProvider>
   );
 };

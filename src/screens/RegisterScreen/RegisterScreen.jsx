@@ -1,12 +1,54 @@
 import { View, Text, Image, ScrollView, Pressable } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GlobalStyles } from "../../utils/global.styles";
 import { styles } from "./RegisterScreen.style";
-import { Button, Input } from "@rneui/themed";
+import { Button, Input, CheckBox } from "@rneui/themed";
 import { colors } from "../../utils/colors";
 
-export default function RegisterScreen({navigation}) {
+import { onRegisterNewUser } from "../../services/firebase-auth";
+
+//define our defaultValues
+const defaultValues = {
+  username: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
+export default function RegisterScreen({ navigation }) {
+  //useStates
+  const [values, setValues] = useState(defaultValues);
+  const { username, email, password, confirmPassword } = values;
+
+  // useState for our checkbox
+  const [checked, setChecked] = useState(false);
+
+  //error UI useStates
+  const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [conPasswordError, setConPasswordError] = useState("");
+
+  //function to register our new user and add them to the Cloud Firestore and to the authentication
+  const onRegister = () => {
+    //if check if fields are empty
+    if (!username && !email && !password && !confirmPassword) {
+      setUsernameError("Enter your name");
+      setEmailError("Enter your email");
+      setPasswordError("Enter your password");
+      setConPasswordError("Confirm your password");
+      return;
+    } else {
+      onRegisterNewUser(username, email, password, checked);
+    }
+  };
+
+  //function to toggle the checkbox
+  onToggleChecked = () => {
+    setChecked(!checked);
+  };
+
   return (
     <ScrollView>
       <SafeAreaView style={[GlobalStyles.container, styles.container]}>
@@ -25,6 +67,11 @@ export default function RegisterScreen({navigation}) {
           label="Username"
           placeholder="CoolDog45"
           autoCapitalize="none"
+          onChangeText={(formValue) =>
+            setValues({ ...values, username: formValue })
+          }
+          value={username}
+          errorMessage={usernameError}
           autoCorrect={false}
           containerStyle={{ marginTop: 30 }}
           inputContainerStyle={GlobalStyles.input}
@@ -37,6 +84,11 @@ export default function RegisterScreen({navigation}) {
           label="Email"
           placeholder="cool-owner@dog.com"
           autoCapitalize="none"
+          onChangeText={(formValue) =>
+            setValues({ ...values, email: formValue })
+          }
+          value={email}
+          errorMessage={emailError}
           autoCorrect={false}
           inputContainerStyle={GlobalStyles.input}
           keyboardType="email-address"
@@ -48,11 +100,45 @@ export default function RegisterScreen({navigation}) {
           label="Password"
           placeholder="strongLik3Hu5ky"
           autoCapitalize="none"
+          onChangeText={(formValue) =>
+            setValues({ ...values, password: formValue })
+          }
+          value={password}
+          errorMessage={passwordError}
           autoCorrect={false}
           secureTextEntry={true}
           inputContainerStyle={GlobalStyles.input}
           labelStyle={styles.label}
           inputStyle={{ fontFamily: "epilogueRegular" }}
+        />
+
+        <Input
+          label="Confirm Password"
+          placeholder="strongLik3Hu5ky"
+          autoCapitalize="none"
+          onChangeText={(formValue) =>
+            setValues({ ...values, confirmPassword: formValue })
+          }
+          value={confirmPassword}
+          errorMessage={conPasswordError}
+          autoCorrect={false}
+          secureTextEntry={true}
+          inputContainerStyle={GlobalStyles.input}
+          labelStyle={styles.label}
+          inputStyle={{ fontFamily: "epilogueRegular" }}
+        />
+
+        <CheckBox
+          checked={checked}
+          checkedColor={colors.blue}
+          containerStyle={styles.checkboxContainer}
+          onIconPress={() => setChecked(!checked)}
+          onPress={() => console.log("onPress()")}
+          size={30}
+          textStyle={styles.checkboxTextStyle}
+          title="I am a judge"
+          titleProps={{}}
+          uncheckedColor={colors.blue}
         />
 
         <Button
@@ -71,7 +157,7 @@ export default function RegisterScreen({navigation}) {
             fontFamily: "epilogueBold",
             alignItems: "center",
             justifyContent: "center",
-            color: colors.blue
+            color: colors.blue,
           }}
         />
 
@@ -79,7 +165,6 @@ export default function RegisterScreen({navigation}) {
         <Pressable onPress={() => navigation.navigate("Login")}>
           <Text style={styles.switchBtn}>Log In</Text>
         </Pressable>
-
       </SafeAreaView>
     </ScrollView>
   );

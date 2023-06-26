@@ -4,10 +4,10 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../config/firebase";
 import { Alert } from "react-native";
 
-import { onCreateUserInDb } from "./firebaseDb";
+import { onCreateUserInDb } from "./firebase-db";
 
 export const onRegisterNewUser = (username, email, password, checked) => {
   createUserWithEmailAndPassword(auth, email, password)
@@ -30,7 +30,6 @@ export const onSignInUser = async (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log(user.email + " LOGGED IN");
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -54,6 +53,7 @@ export const onLogOut = () => {
 
 // Returns the currently logged in user
 export const getCurrentUser = () => {
+  console.log(auth.currentUser + "THIS IS THE USER");
   return auth.currentUser;
 };
 
