@@ -28,7 +28,6 @@ export default function LoginScreen({ navigation }) {
   const { email, password } = values;
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
   const nav = useNavigation();
 
   useEffect(() => {

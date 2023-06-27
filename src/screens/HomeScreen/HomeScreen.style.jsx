@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     padding: 10,
     flex: 1,
-    paddingTop: Platform.OS === "ios" ? 55 : 0
+    paddingTop: Platform.OS === "ios" ? 55 : 10
   },
   location: {
     flexDirection: "row",
@@ -38,7 +38,8 @@ export const styles = StyleSheet.create({
   userContainer: {
     padding: 20,
     backgroundColor: colors.blue,
-    borderRadius: 20
+    borderRadius: 20,
+    marginBottom: 30
   },
   petButton:{
     borderColor: colors.white,

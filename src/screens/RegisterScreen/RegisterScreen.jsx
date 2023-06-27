@@ -144,7 +144,7 @@ export default function RegisterScreen({ navigation }) {
         <Button
           title={"Register"}
           buttonStyle={GlobalStyles.buttonSecondary}
-          onPress={() => navigation.navigate("Home")}
+          onPress={onRegister}
           icon={{
             name: "chevron-right",
             type: "material",
