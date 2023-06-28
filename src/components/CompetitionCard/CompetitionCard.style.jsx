@@ -22,31 +22,31 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   competitionHeading: {
-    fontFamily: "bold",
+    fontFamily: "epilogueBold",
     color: colors.blue,
     fontSize: 20,
     marginBottom: 10,
   },
   address: {
-    fontFamily: "regular",
+    fontFamily: "epilogueRegular",
     color: colors.blue_dark,
     fontSize: 16,
     marginBottom: 10,
   },
   time: {
-    fontFamily: "regular",
+    fontFamily: "epilogueRegular",
     color: colors.white,
     fontSize: 16,
     marginBottom: 10,
   },
   subHeading: {
-    fontFamily: "bold",
+    fontFamily: "epilogueBold",
     fontSize: 18,
     color: colors.blue,
   },
   chipStyle: {
     marginVertical: 15,
     color: colors.blue,
-    fontFamily: "regular",
+    fontFamily: "epilogueRegular",
   },
 });

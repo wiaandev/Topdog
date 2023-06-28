@@ -16,7 +16,7 @@ export const onRegisterNewUser = (username, email, password, checked) => {
       const user = userCredential.user;
       console.log("New User: " + user);
       await onCreateUserInDb(username, email, checked, user.uid);
-      updateAuthProfile(username, checked); // updating profile with authentication
+      updateAuthProfile(username); // updating profile with authentication
       // TODO Create user in our DB
     })
     .catch((error) => {
@@ -78,6 +78,7 @@ export const checkIsJudge = async (uid) => {
 const updateAuthProfile = (username) => {
   updateProfile(auth.currentUser, {
     displayName: username,
+    photoURL: "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
   })
     .then(() => {
       // Profile updated!

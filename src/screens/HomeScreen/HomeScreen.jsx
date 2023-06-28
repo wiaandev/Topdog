@@ -34,6 +34,9 @@ const HomeScreen = ({ navigation }) => {
   const { loggedInUser, getCurrentSignedInUser, address } =
     useContext(UserContext);
 
+  const competitions  = useContext(CompetitionContext);
+  console.log(competitions);
+
   const [isJudge, setIsJudge] = useState(false);
 
   useEffect(() => {
@@ -60,6 +63,8 @@ const HomeScreen = ({ navigation }) => {
     return () => {
       unsubscribe();
     };
+
+
   }, []);
 
   return (
@@ -91,7 +96,7 @@ const HomeScreen = ({ navigation }) => {
           <View>
             <Pressable onPress={() => navigation.navigate("Profile")}>
               <Avatar
-                source={require("../../../assets/icon.png")}
+                source={{ uri: loggedInUser.photoURL }}
                 size={50}
                 rounded
                 containerStyle={{ alignSelf: "center" }}
@@ -131,7 +136,7 @@ const HomeScreen = ({ navigation }) => {
                 marginRight: 5,
                 justifyContent: "center",
               }}
-              onPress={() => navigation.navigate('AllDogs')}
+              onPress={() => navigation.navigate("AllDogs")}
             />
           </>
         )}
@@ -144,8 +149,7 @@ const HomeScreen = ({ navigation }) => {
         onChangeText={(text) => setSearchTerm(text)}
       />
       <Text style={styles.headingStyle}>Nearby Competitions</Text>
-      {/* <Text style={styles.headingStyle}>{loggedInUser}</Text> */}
-      {/* 
+      
       <FlatList
         data={competitions}
         // numColumns={2}
@@ -153,19 +157,40 @@ const HomeScreen = ({ navigation }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate("CompetitionDetail", { id: item.id })
+              navigation.navigate("CDetail", { id: item.id })
             }
           >
             <CompetitionCard heading={item.name} address={item.address} />
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.id}
-      /> */}
+      />
+      
       {isJudge && (
         <>
-          <Pressable>
-            <Icon name="add" type="material" />
-            <Text> Add Competition</Text>
+          <Pressable onPress={addCompetition}>
+            <View
+              style={{
+                alignItems: "center",
+                backgroundColor: colors.white,
+                padding: 15,
+                borderRadius: 10,
+                borderColor: colors.blue,
+                borderWidth: 1,
+              }}
+            >
+              <Icon name="add" type="material" color={colors.blue} />
+              <Text
+                style={{
+                  fontFamily: "epilogueBold",
+                  color: colors.blue,
+                  fontSize: 20,
+                }}
+              >
+                {" "}
+                Add Competition
+              </Text>
+            </View>
           </Pressable>
         </>
       )}

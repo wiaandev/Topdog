@@ -14,9 +14,10 @@ import { db } from "../config/firebase";
 import { uploadToStorage } from "./firebase-storage";
 
 // User Collection
-export const onCreateUserInDb = async (username, email, isJudge, uid) => {
+export const onCreateUserInDb = async (profileImg, username, email, isJudge, uid) => {
   try {
     const docRef = await setDoc(doc(db, "users", uid), {
+      profileImg: "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png",
       username,
       email,
       isJudge,
@@ -99,19 +100,18 @@ export const addPetToUserCollection = async (
 export const addCompetition = async () => {
   try {
     const docRef = await addDoc(collection(db, "competitions"), {
-      name: "Dog Obedience",
+      name: "Nosework",
       banner:
-        "https://www.hepper.com/wp-content/uploads/2021/11/dog-obedience-school-class_SpeedKingz_Shutterstock.jpg",
+        "https://www.fenzidogsportsacademy.com/images/easyblog_articles/279/b2ap3_large_Finn-startline.jpg",
       description:
-        "Dogs are judged on their ability to obey basic to complicated commands at seven different levels, which range from heelwork, controlled sit and stays, retrieving, and scenting discrimination.",
-      address: "1974 Ireland Street",
+        "Nosework is an activity that allows your dog to use their natural desire to hunt. It harnesses a dog's unique ability to detect scent and determine the source.",
+      address: "1478 Church Street",
       city: "Pretoria",
       requirements: {
         age: "<4 Years",
-        breed: "Any",
+        breed: "German Shepard",
         vaccinated: true,
       },
-      totalScore: 100,
     });
   } catch (err) {
     console.log("Something went wrong here: " + err);

@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 import React from "react";
-import { COLORS } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 import { Chip } from "@rneui/themed";
 import { styles } from "./CompetitionCard.style";
 import { Icon } from "@rneui/themed";
@@ -35,7 +35,7 @@ const CompetitionCard = ({ heading, address, countdown }) => {
       <Icon
         name="chevron-right"
         type="material"
-        color={COLORS.blue}
+        color={colors.blue}
       />
     </View>
   );
