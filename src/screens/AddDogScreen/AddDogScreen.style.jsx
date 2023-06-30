@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
     marginVertical: 30,
     backgroundColor: colors.blue,
     alignSelf: "center",
-    borderRadius: 10,
   },
   input: {
     fontFamily: "epilogueRegular",

@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./DogsScreen.style";
 import { colors } from "../../utils/colors";
@@ -7,17 +7,23 @@ import { Button, Icon } from "@rneui/themed";
 import { GlobalStyles } from "../../utils/global.styles";
 import { FlatList } from "react-native";
 import { UserContext } from "../../context/User.context";
+import { getAllPets } from "../../services/firebase-db";
+import PetCard from "../../components/PetCard/PetCard";
 
-export default function DogsScreen({navigation}) {
-
-  const {pets} = useContext(UserContext);
+export default function DogsScreen({ navigation }) {
+  const { pets, getCurrentSignedInUser } = useContext(UserContext);
+  console.log(pets);
 
   const onAddPet = () => {
-    navigation.navigate("AddDog")
-  }
+    navigation.navigate("AddDog");
+  };
+
+  useEffect(() => {
+    getCurrentSignedInUser();
+  }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View
         style={{
           flexDirection: "row",
@@ -41,16 +47,21 @@ export default function DogsScreen({navigation}) {
       <FlatList
         numColumns={2}
         data={pets}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <PetCard
-            name={"Jake"}
-            img={
-              "https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-            }
-          />
-        )}
-      ></FlatList>
-    </SafeAreaView>
+        keyExtractor={(item) => item.name}
+        renderItem={({ item }) => {
+          console.log("Rendering item:", item);
+
+          return (
+            <PetCard
+              name={item.name}
+              img={item.img}
+              breed={item.breedType}
+              age={item.age}
+              vaccinated={item.vaccinated}
+            />
+          );
+        }}
+      />
+    </View>
   );
 }

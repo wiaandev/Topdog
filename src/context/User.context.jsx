@@ -18,6 +18,8 @@ export const UserProvider = ({ children }) => {
     const currentUser = getCurrentUser();
     console.log(currentUser);
     setLoggedInUser(currentUser);
+    const retrievedPets = getAllPets(currentUser.uid);
+    setPets(retrievedPets);
   };
 
   console.log("STOPPED BEFORE EFFECT");
@@ -54,8 +56,6 @@ export const UserProvider = ({ children }) => {
         reverseGeoCode(currentLocation);
         //get all pets
 
-        const retrievedPets = await getAllPets(currentUser.uid);
-        setPets(retrievedPets);
         setLocation(currentLocation);
       } catch (error) {
         console.error("Error during data fetching:", error);

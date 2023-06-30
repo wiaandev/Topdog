@@ -29,7 +29,6 @@ const AddDogScreen = ({ navigation }) => {
   const [values, setValues] = useState(defaultValues);
   const { name, breedType, age, weight, height } = values;
   const uid = getCurrentUser().uid;
-  console.log(uid);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
