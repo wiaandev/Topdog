@@ -14,10 +14,9 @@ import { db } from "../config/firebase";
 import { uploadToStorage } from "./firebase-storage";
 
 // User Collection
-export const onCreateUserInDb = async (profileImg, username, email, isJudge, uid) => {
+export const onCreateUserInDb = async (username, email, isJudge, uid) => {
   try {
     const docRef = await setDoc(doc(db, "users", uid), {
-      profileImg: "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png",
       username,
       email,
       isJudge,

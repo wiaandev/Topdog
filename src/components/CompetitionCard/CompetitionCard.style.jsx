@@ -4,12 +4,6 @@ import { colors } from "../../utils/colors";
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.blue_light,
-    borderRadius: 10,
-    marginVertical: 10,
-    margin: 5,
-    padding: 20,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
   },
   inner: {
     backgroundColor: colors.white,

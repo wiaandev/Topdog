@@ -14,7 +14,7 @@ export const onRegisterNewUser = (username, email, password, checked) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
       const user = userCredential.user;
-      console.log("New User: " + user);
+      console.log(user);
       await onCreateUserInDb(username, email, checked, user.uid);
       updateAuthProfile(username); // updating profile with authentication
       // TODO Create user in our DB
