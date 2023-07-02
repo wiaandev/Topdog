@@ -1,11 +1,12 @@
-import { Text, View } from "react-native";
+import { ImageBackground, Text, View } from "react-native";
 import React from "react";
 import { colors } from "../../utils/colors";
 import { Chip } from "@rneui/themed";
 import { styles } from "./CompetitionCard.style";
 import { Icon } from "@rneui/themed";
+import { LinearGradient } from "expo-linear-gradient";
 
-const CompetitionCard = ({ heading, address, countdown }) => {
+const CompetitionCard = ({ heading, address, countdown, banner }) => {
   return (
     // <View style={styles.container}>
     //   <View style={styles.competition}>
@@ -28,16 +29,31 @@ const CompetitionCard = ({ heading, address, countdown }) => {
     //     </View>
     //   </View>
     // </View>
-    <View style={styles.container}>
-        <Text style={styles.time}>{countdown}</Text>
-        <Text style={styles.competitionHeading}>{heading}</Text>
-        <Text style={styles.address}>{address}</Text>
-      <Icon
-        name="chevron-right"
-        type="material"
-        color={colors.blue}
-      />
-    </View>
+    <ImageBackground
+      source={{ uri: banner }}
+      resizeMode="cover"
+      style={{
+        width: "100%",
+        height: 150,
+        borderRadius: 10,
+        marginVertical: 10,
+        overflow: "hidden",
+        margin: 5,
+      }}
+    >
+      <LinearGradient
+        colors={["#bdc6d4", "#14213D12"]}
+        start={{x: 0, y: 1}}
+        style={{ width: "500%", height: "100%" }}
+      >
+        <View style={{padding: 10}}>
+          <Text style={styles.time}>{countdown}</Text>
+          <Text style={styles.competitionHeading}>{heading}</Text>
+          <Text style={styles.address}>{address}</Text>
+        </View>
+      </LinearGradient>
+      {/* <GoProButton /> */}
+    </ImageBackground>
   );
 };
 

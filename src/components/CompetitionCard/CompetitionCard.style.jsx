@@ -3,7 +3,7 @@ import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.yellow,
+    backgroundColor: colors.blue_light,
     borderRadius: 10,
     marginVertical: 10,
     margin: 5,
@@ -29,13 +29,13 @@ export const styles = StyleSheet.create({
   },
   address: {
     fontFamily: "epilogueRegular",
-    color: colors.blue_dark,
+    color: colors.blue,
     fontSize: 16,
     marginBottom: 10,
   },
   time: {
     fontFamily: "epilogueRegular",
-    color: colors.white,
+    color: colors.blue,
     fontSize: 16,
     marginBottom: 10,
   },

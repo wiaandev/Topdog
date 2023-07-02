@@ -48,6 +48,7 @@ export const UserProvider = ({ children }) => {
             reverseGeoCodedAddress.forEach(({ city, district }) => {
               setAddress(`${district}, ${city}`);
             });
+            console.log(address);
           } catch (error) {
             console.error("Error during reverse geocoding:", error);
           }

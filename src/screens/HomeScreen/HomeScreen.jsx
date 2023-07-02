@@ -160,7 +160,7 @@ const HomeScreen = ({ navigation }) => {
               navigation.navigate("CDetail", { id: item.id })
             }
           >
-            <CompetitionCard heading={item.name} address={item.address} />
+            <CompetitionCard heading={item.name} address={item.address} banner={item.banner} />
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.id}

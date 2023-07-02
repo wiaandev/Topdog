@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     marginVertical: 20,
+    width: "60%"
   },
   locationIcon: {
     marginRight: 10,
