@@ -99,18 +99,19 @@ export const addPetToUserCollection = async (
 export const addCompetition = async () => {
   try {
     const docRef = await addDoc(collection(db, "competitions"), {
-      name: "Nosework",
+      name: "Luring Course",
       banner:
-        "https://www.fenzidogsportsacademy.com/images/easyblog_articles/279/b2ap3_large_Finn-startline.jpg",
+        "https://images.unsplash.com/photo-1607696442638-93393692197a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80",
       description:
-        "Nosework is an activity that allows your dog to use their natural desire to hunt. It harnesses a dog's unique ability to detect scent and determine the source.",
-      address: "1478 Church Street",
+        "It refers to a type of dog competition where dogs participate in lure coursing, which is a sport where dogs chase a mechanically operated lure.",
+      address: "256 Jacqueline Drive",
       city: "Pretoria",
       requirements: {
-        age: "<4 Years",
-        breed: "German Shepard",
+        age: "<2 Years",
+        breed: "Any Breed",
         vaccinated: true,
       },
+      timeEnd: 1688597751,
     });
   } catch (err) {
     console.log("Something went wrong here: " + err);
