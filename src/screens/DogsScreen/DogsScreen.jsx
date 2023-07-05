@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./DogsScreen.style";
 import { colors } from "../../utils/colors";
@@ -9,18 +9,29 @@ import { FlatList } from "react-native";
 import { UserContext } from "../../context/User.context";
 import { getAllPets } from "../../services/firebase-db";
 import PetCard from "../../components/PetCard/PetCard";
+import { useFocusEffect } from "@react-navigation/native";
+import { getCurrentUser } from "../../services/firebase-auth";
 
 export default function DogsScreen({ navigation }) {
-  const { pets, getCurrentSignedInUser } = useContext(UserContext);
-  console.log(pets);
+  const { getCurrentSignedInUser } = useContext(UserContext);
+  const [pets, setPets] = useState();
 
   const onAddPet = () => {
     navigation.navigate("AddDog");
   };
 
-  useEffect(() => {
-    getCurrentSignedInUser();
-  }, []);
+  const getPets = async () => {
+    const pets = await getAllPets(getCurrentUser().uid);
+    setPets(pets);
+    // console.log("THIS IS IT" + pets);
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      getCurrentSignedInUser();
+      getPets();
+    }, [])
+  );
 
   return (
     <View style={styles.container}>
@@ -57,7 +68,7 @@ export default function DogsScreen({ navigation }) {
               img={item.img}
               breed={item.breedType}
               age={item.age}
-              vaccinated={item.vaccinated}
+              vaccinated={item.isVaccinated  ? "Yes" : "No"}
             />
           );
         }}

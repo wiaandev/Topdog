@@ -10,13 +10,17 @@ export const styles = StyleSheet.create({
     },
     container: {
         width: '48%',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         padding: 15,
-        margin: '1%'
+        margin: '1%',
+        gap: 5,
+        backgroundColor: colors.blue_light,
+        borderRadius: 10,
     },
     dogName: {
-        fontFamily: 'regular',
+        fontFamily: 'epilogueBold',
         marginVertical: 10,
+        fontSize: 20,
         color: colors.blue
     }
 })
