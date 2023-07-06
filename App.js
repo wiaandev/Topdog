@@ -19,6 +19,8 @@ import LeaderboardScreen from "./src/screens/LeaderboardScreen/LeaderboardScreen
 import ProfileScreen from "./src/screens/ProfileScreen/ProfileScreen";
 import OnboardingScreen from "./src/screens/OnboardingScreen/OnboardingScreen";
 import ResultScreen from "./src/screens/ResultsScreen/ResultScreen";
+import EditDogScreen from "./src/screens/EditDogScreen/EditDogScreen";
+import AddCompetitionScreen from "./src/screens/AddCompetitionScreen/AddCompetitionScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -67,6 +69,8 @@ const App = () => {
               <Stack.Screen name="Onboarding" component={OnboardingScreen} />
               <Stack.Screen name="Profile" component={ProfileScreen} />
               <Stack.Screen name="Results" component={ResultScreen} />
+              <Stack.Screen name="EditDog" component={EditDogScreen} />
+              <Stack.Screen name="AddCompetition" component={AddCompetitionScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </CompetitionProvider>

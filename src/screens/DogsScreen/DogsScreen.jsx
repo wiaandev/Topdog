@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./DogsScreen.style";
@@ -60,16 +60,16 @@ export default function DogsScreen({ navigation }) {
         data={pets}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => {
-          console.log("Rendering item:", item);
-
           return (
-            <PetCard
-              name={item.name}
-              img={item.img}
-              breed={item.breedType}
-              age={item.age}
-              vaccinated={item.isVaccinated  ? "Yes" : "No"}
-            />
+            <TouchableOpacity style={styles.cardContainer} onPress={() => navigation.navigate('EditDog')}>
+              <PetCard
+                name={item.name}
+                img={item.img}
+                breed={item.breedType}
+                age={item.age}
+                vaccinated={item.isVaccinated ? "Yes" : "No"}
+              />
+            </TouchableOpacity>
           );
         }}
       />

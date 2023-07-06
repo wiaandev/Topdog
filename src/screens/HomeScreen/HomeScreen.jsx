@@ -168,7 +168,7 @@ const HomeScreen = ({ navigation }) => {
       
       {isJudge && (
         <>
-          <Pressable onPress={addCompetition}>
+          <Pressable onPress={() => navigation.navigate("AddCompetition")}>
             <View
               style={{
                 alignItems: "center",

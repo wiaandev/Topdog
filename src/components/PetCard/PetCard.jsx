@@ -20,11 +20,6 @@ const PetCard = ({ img, name, breed, vaccinated, age }) => {
       <Text>Age: {age}</Text>
       <Text>Vaccinated: {vaccinated}</Text>
       <Divider width={5} color={colors.blue} />
-      <Button
-        title={"Delete"}
-        titleStyle={{ fontFamily: "epilogueBold", color: colors.white }}
-        buttonStyle={{ backgroundColor: "salmon", borderRadius: 10 }}
-      />
     </View>
   );
 };
