@@ -59,19 +59,20 @@ export default function DogsScreen({ navigation }) {
         numColumns={2}
         data={pets}
         keyExtractor={(item) => item.name}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity style={styles.cardContainer} onPress={() => navigation.navigate('EditDog')}>
-              <PetCard
-                name={item.name}
-                img={item.img}
-                breed={item.breedType}
-                age={item.age}
-                vaccinated={item.isVaccinated ? "Yes" : "No"}
-              />
-            </TouchableOpacity>
-          );
-        }}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={styles.cardContainer}
+            onPress={() => navigation.navigate("EditDog", { id: item.id })}
+          >
+            <PetCard
+              name={item.name}
+              img={item.img}
+              breed={item.breedType}
+              age={item.age}
+              vaccinated={item.isVaccinated ? "Yes" : "No"}
+            />
+          </TouchableOpacity>
+        )}
       />
     </View>
   );

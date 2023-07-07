@@ -60,6 +60,22 @@ export const getSingleCompetition = async (id) => {
   }
 };
 
+export const getSinglePet = async (uid, id) => {
+  try {
+    const petRef = doc(collection(db, "users" , uid, "pets"), id);
+    const petSnapshot = await getDoc(petRef);
+
+    if (petSnapshot.exists()) {
+      const petData = petSnapshot.data();
+      return petData;
+    } else {
+      console.log("pet couldn't be found");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const addPetToUserCollection = async (
   profileImg,
   name,
