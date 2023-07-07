@@ -62,7 +62,7 @@ export const getSingleCompetition = async (id) => {
 
 export const getSinglePet = async (uid, id) => {
   try {
-    const petRef = doc(collection(db, "users" , uid, "pets"), id);
+    const petRef = doc(collection(db, "users", uid, "pets"), id);
     const petSnapshot = await getDoc(petRef);
 
     if (petSnapshot.exists()) {
@@ -112,23 +112,40 @@ export const addPetToUserCollection = async (
   }
 };
 
-export const addCompetition = async () => {
+export const addCompetition = async (
+  bannerImg,
+  name,
+  description,
+  address,
+  city,
+  date
+) => {
+  const convertToUnix = () => {
+    const competitionDate = date;
+    return new Date(competitionDate).getTime() / 1000;
+  };
+
   try {
+    const unixTimeStamp = convertToUnix();
+
     const docRef = await addDoc(collection(db, "competitions"), {
-      name: "Luring Course",
-      banner:
-        "https://images.unsplash.com/photo-1607696442638-93393692197a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80",
-      description:
-        "It refers to a type of dog competition where dogs participate in lure coursing, which is a sport where dogs chase a mechanically operated lure.",
-      address: "256 Jacqueline Drive",
-      city: "Pretoria",
+      name: name,
+      banner: await uploadToStorage(
+        bannerImg,
+        `petImages/${Math.floor(Math.random() * 6) + 1}`
+      ),
+      description: description,
+      address: address,
+      city: city,
       requirements: {
-        age: "<2 Years",
-        breed: "Any Breed",
+        age: ">2",
+        breed: "Any",
         vaccinated: true,
       },
-      timeEnd: 1688597751,
+      timeEnd: unixTimeStamp,
     });
+
+    console.log(unixTimeStamp);
   } catch (err) {
     console.log("Something went wrong here: " + err);
   }

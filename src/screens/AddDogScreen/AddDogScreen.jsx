@@ -5,7 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React, { useState, useSyncExternalStore } from "react";
+import React, { useState } from "react";
 import { styles } from "./AddDogScreen.style";
 import { Button, CheckBox, Input } from "@rneui/themed";
 import { SafeAreaView } from "react-native-safe-area-context";
