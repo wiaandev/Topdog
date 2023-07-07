@@ -5,13 +5,20 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useState,
+  useContext,
+  useCallback,
+} from "react";
 import {
   Avatar,
   Button,
   ButtonGroup,
   Divider,
   Icon,
+  Image,
   Input,
 } from "@rneui/themed";
 import { colors } from "../../utils/colors";
@@ -23,19 +30,19 @@ import { auth } from "../../config/firebase";
 
 // Location Import
 
-import { CompetitionContext } from "../../context/Competition.context";
 import { UserContext } from "../../context/User.context";
 import { Skeleton } from "@rneui/themed";
-import { addCompetition } from "../../services/firebase-db";
+import { addCompetition, getAllCompetitions } from "../../services/firebase-db";
 import { checkIsJudge, getCurrentUser } from "../../services/firebase-auth";
+import { useFocusEffect } from "@react-navigation/native";
+
+import { noCompetitionsImage } from "../../../assets/no-competitions.png";
 
 const HomeScreen = ({ navigation }) => {
-  // const competitions = useContext(CompetitionContext);
   const { loggedInUser, getCurrentSignedInUser, address } =
     useContext(UserContext);
 
-  const competitions  = useContext(CompetitionContext);
-  console.log(competitions);
+  const [dogCompetitions, setDogCompetitions] = useState();
 
   const [isJudge, setIsJudge] = useState(false);
 
@@ -63,9 +70,18 @@ const HomeScreen = ({ navigation }) => {
     return () => {
       unsubscribe();
     };
-
-
   }, []);
+
+  const getCompetitions = async () => {
+    const competitions = await getAllCompetitions();
+    setDogCompetitions(competitions);
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      getCompetitions();
+    }, [])
+  );
 
   return (
     <View style={styles.container}>
@@ -149,23 +165,42 @@ const HomeScreen = ({ navigation }) => {
         onChangeText={(text) => setSearchTerm(text)}
       />
       <Text style={styles.headingStyle}>Nearby Competitions</Text>
-      
+
       <FlatList
-        data={competitions}
-        // numColumns={2}
+        data={dogCompetitions}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("CDetail", { id: item.id })
-            }
+            onPress={() => navigation.navigate("CDetail", { id: item.id })}
           >
-            <CompetitionCard heading={item.name} address={item.address} banner={item.banner} countdown={item.timeEnd}/>
+            <CompetitionCard
+              heading={item.name}
+              address={item.address}
+              banner={item.banner}
+              countdown={item.timeEnd}
+            />
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.id}
+        ListEmptyComponent={
+          // <Image
+          //   source={require("../../../assets/no-competitions.png")}
+          //   containerStyle={{
+          //     aspectRatio: 1,
+          //     width: "100%",
+          //     flex: 1,
+          //     alignSelf: "center",
+          //     justifyContent: "center",
+          //   }}
+          // />
+          <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 50}}>
+
+            <Text style={{fontFamily: 'epilogueRegular', fontSize: 18, color: colors.blue}}> No Competitions Nearby</Text>
+            <Icon name="error" type="material" size={200} color={colors.blue_light}/>
+          </View>
+        }
       />
-      
+
       {isJudge && (
         <>
           <Pressable onPress={() => navigation.navigate("AddCompetition")}>

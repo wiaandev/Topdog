@@ -4,7 +4,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { CompetitionProvider } from "./src/context/Competition.context";
 import { UserProvider } from "./src/context/User.context";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -50,7 +49,6 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <UserProvider>
-        <CompetitionProvider>
           <NavigationContainer>
             <Stack.Navigator
               initialRouteName="Login"
@@ -73,7 +71,6 @@ const App = () => {
               <Stack.Screen name="AddCompetition" component={AddCompetitionScreen} />
             </Stack.Navigator>
           </NavigationContainer>
-        </CompetitionProvider>
       </UserProvider>
     </SafeAreaProvider>
   );

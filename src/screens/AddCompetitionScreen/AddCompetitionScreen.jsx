@@ -164,7 +164,9 @@ export default function AddCompetitionScreen({ navigation }) {
           <Button
             title={"Add Competition"}
             buttonStyle={styles.button}
-            onPress={() => addCompetition(bannerImg, name, description, address, city, date)}
+            onPress={() => addCompetition(bannerImg, name, description, address, city, date).then(() => {
+              navigation.goBack()
+            })}
             titleStyle={{ fontFamily: "epilogueBold" }}
           />
           <Button
