@@ -46,7 +46,7 @@ export const UserProvider = ({ children }) => {
             console.log("Reverse Geocoded");
 
             reverseGeoCodedAddress.forEach(({ city, district }) => {
-              setAddress(`${district}, ${city}`);
+              setAddress(`${district}`);
             });
             console.log(address);
           } catch (error) {

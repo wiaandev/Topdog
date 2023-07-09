@@ -169,34 +169,48 @@ const HomeScreen = ({ navigation }) => {
       <FlatList
         data={dogCompetitions}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("CDetail", { id: item.id })}
-          >
-            <CompetitionCard
-              heading={item.name}
-              address={item.address}
-              banner={item.banner}
-              countdown={item.timeEnd}
-            />
-          </TouchableOpacity>
-        )}
+        renderItem={({ item }) => {
+          if (item.city === address) {
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("CDetail", { id: item.id })}
+              >
+                <CompetitionCard
+                  heading={item.name}
+                  address={item.address}
+                  banner={item.banner}
+                  countdown={item.timeEnd}
+                />
+              </TouchableOpacity>
+            );
+          } else {
+            return null; // Skip rendering if city doesn't match
+          }
+        }}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={
-          // <Image
-          //   source={require("../../../assets/no-competitions.png")}
-          //   containerStyle={{
-          //     aspectRatio: 1,
-          //     width: "100%",
-          //     flex: 1,
-          //     alignSelf: "center",
-          //     justifyContent: "center",
-          //   }}
-          // />
-          <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 50}}>
-
-            <Text style={{fontFamily: 'epilogueRegular', fontSize: 18, color: colors.blue}}> No Competitions Nearby</Text>
-            <Icon name="error" type="material" size={200} color={colors.blue_light}/>
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: 50,
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "epilogueRegular",
+                fontSize: 18,
+                color: colors.blue,
+              }}
+            >
+              No Competitions Nearby
+            </Text>
+            <Icon
+              name="error"
+              type="material"
+              size={200}
+              color={colors.blue_light}
+            />
           </View>
         }
       />
@@ -207,11 +221,10 @@ const HomeScreen = ({ navigation }) => {
             <View
               style={{
                 alignItems: "center",
-                backgroundColor: colors.white,
+                backgroundColor: colors.yellow,
                 padding: 15,
                 borderRadius: 10,
-                borderColor: colors.blue,
-                borderWidth: 1,
+                marginBottom: 30
               }}
             >
               <Icon name="add" type="material" color={colors.blue} />
