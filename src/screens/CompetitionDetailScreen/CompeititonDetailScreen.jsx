@@ -80,7 +80,7 @@ export default function CompeititonDetailScreen({ navigation, route }) {
           />
           <Chip
             title={
-              competitionData && competitionData?.requirements?.vaccinated
+              competitionData && competitionData?.requirements?.isVaccinated
                 ? "Vaccinated"
                 : "Not Vaccinated"
             }

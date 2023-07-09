@@ -29,5 +29,16 @@ export const styles = StyleSheet.create({
   date:{
     alignSelf: 'center',
     marginBottom: 20
-  }
+  },
+  checkboxContainer: {
+    backgroundColor: colors.white_dark,
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 30,
+  },
+  checkboxTextStyle: {
+    color: colors.blue,
+    fontFamily: "epilogueRegular",
+    fontWeight: "epilogueRegular",
+  },
 });

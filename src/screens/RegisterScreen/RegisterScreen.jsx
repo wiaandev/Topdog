@@ -130,7 +130,7 @@ export default function RegisterScreen({ navigation }) {
 
         <CheckBox
           checked={checked}
-          checkedColor={colors.blue}
+          checkedColor={colors.yellow}
           containerStyle={styles.checkboxContainer}
           onIconPress={() => setChecked(!checked)}
           onPress={() => console.log("onPress()")}
@@ -138,7 +138,7 @@ export default function RegisterScreen({ navigation }) {
           textStyle={styles.checkboxTextStyle}
           title="I am a judge"
           titleProps={{}}
-          uncheckedColor={colors.blue}
+          uncheckedColor={colors.yellow}
         />
 
         <Button

@@ -118,6 +118,9 @@ export const addCompetition = async (
   description,
   address,
   city,
+  age,
+  breed,
+  vaccinated,
   date
 ) => {
   const convertToUnix = () => {
@@ -138,9 +141,9 @@ export const addCompetition = async (
       address: address,
       city: city,
       requirements: {
-        age: ">2",
-        breed: "Any",
-        vaccinated: true,
+        age: age,
+        breed: breed,
+        vaccinated: vaccinated,
       },
       timeEnd: unixTimeStamp,
     });

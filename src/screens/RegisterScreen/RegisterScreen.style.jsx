@@ -16,8 +16,8 @@ export const styles = StyleSheet.create({
   },
   label: {
     fontFamily: "epilogueRegular",
-    fontWeight: 'regular',
-    color: colors.white
+    fontWeight: "regular",
+    color: colors.white,
   },
   tersiaryBtn: {
     fontFamily: "epilogueRegular",
@@ -27,5 +27,14 @@ export const styles = StyleSheet.create({
   switchBtn: {
     fontFamily: "epilogueBold",
     color: colors.yellow,
+  },
+  checkboxContainer: {
+    backgroundColor: "transparent",
+    marginBottom: 30,
+  },
+  checkboxTextStyle: {
+    color: colors.white,
+    fontFamily: "epilogueRegular",
+    fontWeight: "epilogueRegular",
   },
 });

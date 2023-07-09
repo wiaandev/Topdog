@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { addCompetition } from "../../services/firebase-db";
 import { colors } from "../../utils/colors";
 import { GlobalStyles } from "../../utils/global.styles";
-import { Avatar, Button, Input } from "@rneui/themed";
+import { Avatar, Button, CheckBox, Divider, Input } from "@rneui/themed";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import * as ImagePicker from "expo-image-picker";
 
@@ -15,12 +15,15 @@ export default function AddCompetitionScreen({ navigation }) {
     description: "",
     address: "",
     city: "",
+    age: 0,
+    breed: "",
     date: new Date(),
   };
 
+  const [checked, setChecked] = useState(false);
   const [bannerImg, setBannerImg] = useState(null);
   const [values, setValues] = useState(defaultValues);
-  const { name, description, address, city, date } = values;
+  const { name, description, address, city, age, breed, date } = values;
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -52,20 +55,15 @@ export default function AddCompetitionScreen({ navigation }) {
             marginBottom: 10,
           }}
         >
-          New Competition Time
+          New Competition
         </Text>
         <Text
           style={{
-            fontFamily: "epilogueBold",
-            textAlign: "center",
+            fontFamily: "epilogueRegular",
             fontSize: 16,
-            marginBottom: 20,
+            marginVertical: 10,
           }}
         >
-          Add Details Below
-        </Text>
-
-        <Text style={{ fontFamily: "epilogueRegular", fontSize: 16 }}>
           Competition Banner
         </Text>
         <TouchableOpacity onPress={pickImage}>
@@ -151,6 +149,69 @@ export default function AddCompetitionScreen({ navigation }) {
           inputStyle={{ fontFamily: "epilogueRegular" }}
         />
 
+        <Input
+          label="Age"
+          placeholder="What age should the dogs be?"
+          autoCapitalize="none"
+          onChangeText={(text) => setValues({ ...values, age: text })}
+          value={age}
+          errorMessage={""}
+          autoCorrect={false}
+          inputContainerStyle={GlobalStyles.input}
+          keyboardType="default"
+          labelStyle={{ fontFamily: "epilogueRegular", color: colors.blue }}
+          inputStyle={{ fontFamily: "epilogueRegular" }}
+        />
+
+        <Input
+          label="Breed"
+          placeholder="Which breeds are allowed?"
+          autoCapitalize="none"
+          onChangeText={(text) => setValues({ ...values, breed: text })}
+          value={breed}
+          errorMessage={""}
+          autoCorrect={false}
+          inputContainerStyle={GlobalStyles.input}
+          keyboardType="default"
+          labelStyle={{ fontFamily: "epilogueRegular", color: colors.blue }}
+          inputStyle={{ fontFamily: "epilogueRegular" }}
+        />
+
+        <Text
+          style={{
+            fontFamily: "epilogueRegular",
+            fontSize: 16,
+            marginBottom: 10,
+            marginLeft: 10,
+          }}
+        >
+          Vaccination Requirement
+        </Text>
+
+        <CheckBox
+          checked={checked}
+          checkedColor={colors.blue}
+          containerStyle={styles.checkboxContainer}
+          onIconPress={() => setChecked(!checked)}
+          onPress={() => console.log("onPress()")}
+          size={30}
+          textStyle={styles.checkboxTextStyle}
+          title="Vaccinated"
+          titleProps={{}}
+          uncheckedColor={colors.blue}
+        />
+
+        <Text
+          style={{
+            fontFamily: "epilogueRegular",
+            fontSize: 16,
+            marginBottom: 10,
+            textAlign: "center",
+          }}
+        >
+          Competition Closing Time
+        </Text>
+
         <DateTimePicker
           mode="datetime"
           value={date}
@@ -160,13 +221,31 @@ export default function AddCompetitionScreen({ navigation }) {
           accentColor={colors.blue}
         />
 
+        <Divider
+          width={1}
+          color={colors.yellow_light}
+          style={{ marginVertical: 15 }}
+        />
+
         <View style={{ gap: 20 }}>
           <Button
             title={"Add Competition"}
             buttonStyle={styles.button}
-            onPress={() => addCompetition(bannerImg, name, description, address, city, date).then(() => {
-              navigation.goBack()
-            })}
+            onPress={() =>
+              addCompetition(
+                bannerImg,
+                name,
+                description,
+                address,
+                city,
+                age,
+                breed,
+                checked,
+                date
+              ).then(() => {
+                navigation.goBack();
+              })
+            }
             titleStyle={{ fontFamily: "epilogueBold" }}
           />
           <Button
