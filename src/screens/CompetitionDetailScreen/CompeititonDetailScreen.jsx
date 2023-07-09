@@ -74,7 +74,7 @@ export default function CompeititonDetailScreen({ navigation, route }) {
             color={colors.yellow}
           />
           <Chip
-            title={competitionData && competitionData?.requirements?.age + " Old"}
+            title={competitionData && competitionData?.requirements?.age + "< Years Old"}
             containerStyle={styles.chipStyle}
             color={colors.yellow}
           />

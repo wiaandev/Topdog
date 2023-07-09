@@ -9,6 +9,7 @@ import {
   orderBy,
   query,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { uploadToStorage } from "./firebase-storage";
@@ -251,6 +252,33 @@ export const getLeaderboard = async (competitionId) => {
     return entries;
   }
 };
+
+export const updateDogInfo = async (
+  uid,
+  id,
+  name,
+  breed,
+  height,
+  weight,
+  age,
+  vaccinated,
+) => {
+  try {
+    
+    await updateDoc(doc(db, "users", uid, "pets", id),{
+      name,
+      breedType: breed,
+      height,
+      weight,
+      age,
+      isVaccinated: vaccinated
+    });
+    console.log("DOG UPDATED");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 export const updateEntryScoreInCompetition = async (
   competitionId,

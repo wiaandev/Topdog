@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   competitionHeading: {
     display: "flex",
     position: "absolute",
-    bottom: 30,
+    bottom: 10,
     flexDirection: "row",
     // marginTop: 10,
     color: colors.white,
@@ -34,7 +34,9 @@ export const styles = StyleSheet.create({
   chipContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    marginBottom: 50
+    marginTop: 10,
+    marginBottom: 50,
+    gap: 5
   },
   description: {
     fontFamily: "epilogueRegular",

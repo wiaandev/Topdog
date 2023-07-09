@@ -49,5 +49,12 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     width: "60%"
-  }
+  },
+  buttonOutline: {
+    borderColor: colors.blue,
+    borderWidth: 1,
+    borderRadius: 5,
+    width: "100%",
+    height: 70
+  },
 });
