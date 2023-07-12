@@ -43,4 +43,7 @@ export const styles = StyleSheet.create({
     color: colors.blue,
     fontFamily: "epilogueRegular",
   },
+  ended: {
+    opacity: 0.3
+  }
 });

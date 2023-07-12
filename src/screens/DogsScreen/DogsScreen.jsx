@@ -73,6 +73,52 @@ export default function DogsScreen({ navigation }) {
             />
           </TouchableOpacity>
         )}
+        bounces={false}
+        ListEmptyComponent={
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 10,
+              marginTop: 50,
+              justifyContent: 'center'
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "epilogueRegular",
+                fontSize: 16,
+                color: colors.blue,
+              }}
+            >
+              No Dogs Found! Let's Fix That!
+            </Text>
+            <Icon
+              name="dog-side-off"
+              type="material-community"
+              size={200}
+              color={colors.blue_light}
+            />
+            <Button
+              title={"Add"}
+              buttonStyle={GlobalStyles.buttonSecondary}
+              onPress={() => navigation.navigate('AddDog')}
+              icon={{
+                name: "add",
+                type: "material",
+                size: 30,
+                color: colors.white,
+              }}
+              iconRight
+              titleStyle={{
+                fontFamily: "epilogueBold",
+                alignItems: "center",
+                justifyContent: "center",
+                color: colors.white,
+              }}
+            />
+          </View>
+        }
       />
     </View>
   );

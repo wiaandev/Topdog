@@ -184,7 +184,7 @@ const HomeScreen = ({ navigation }) => {
               </TouchableOpacity>
             );
           } else {
-            return null; // Skip rendering if city doesn't match
+            return null
           }
         }}
         keyExtractor={(item) => item.id}
@@ -217,7 +217,7 @@ const HomeScreen = ({ navigation }) => {
 
       {isJudge && (
         <>
-          <Pressable onPress={() => navigation.navigate("AddCompetition")}>
+          <TouchableOpacity onPress={() => navigation.navigate("AddCompetition")}>
             <View
               style={{
                 alignItems: "center",
@@ -239,7 +239,7 @@ const HomeScreen = ({ navigation }) => {
                 Add Competition
               </Text>
             </View>
-          </Pressable>
+          </TouchableOpacity>
         </>
       )}
     </View>

@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     flexWrap: "wrap",
     marginTop: 10,
     marginBottom: 50,
-    gap: 5
+    gap: 5,
   },
   description: {
     fontFamily: "epilogueRegular",
@@ -49,4 +49,42 @@ export const styles = StyleSheet.create({
     color: colors.blue,
     marginTop: 20,
   },
+  overlayView: {
+    height: "100%",
+    width: "100%",
+    position: "absolute",
+    backgroundColor: "rgba(0, 204, 0, 0.5)",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "rgba(20,33,61,0.5)",
+    alignItems: "center",
+    marginVertical: Platform.OS === "ios" ? 70 : 70,
+  },
+  modalView: {
+    backgroundColor: colors.white,
+    borderRadius: 20,
+    width: 300,
+    padding: 30,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    flexWrap: "wrap",
+    flex: 1,
+  },
+
+  tappedPet: {
+    // Style to apply when the pet item is tapped
+    backgroundColor: "limegreen",
+    padding: 5,
+    borderRadius: 10
+    // Add any other desired styles
+  }
 });
