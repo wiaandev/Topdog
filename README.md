@@ -286,13 +286,12 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 - [unDraw](https://undraw.co/)
 - [React Native Elements](https://reactnativeelements.com/docs)
 
-[image1]: assets/readme-assets/about-project.jpg
-[image2]: assets/readme-assets/login-signup.jpg
-[image3]: assets/readme-assets/competitions.jpg
-[image4]: assets/readme-assets/pets.jpg
+[image1]: assets/readme-assets/about-project.png
+[image2]: assets/readme-assets/login-signup.png
+[image3]: assets/readme-assets/competition.png
+[image4]: assets/readme-assets/pets.png
 [image5]: assets/readme-assets/competition.jpg
-[image6]: assets/readme-assets/vote.jpg
-[image7]: assets/readme-assets/leaderboard.jpg
+[image6]: assets/readme-assets/vote.png
 [image8]: assets/readme-assets/wireframes.png
 [image9]: assets/readme-assets/database.png
 [image10]: assets/readme-assets/user-flow.png
